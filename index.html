@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Personal academic website of Lokesh Saravanan, a researcher specializing in surface science, electrocatalysis, and nanomaterials."
+    >
+
+    <title>Lokesh Saravanan | Researcher</title>
+
+    <style>
+        :root {
+            --primary: #173b57;
+            --primary-light: #245d78;
+            --accent: #20a39e;
+            --accent-dark: #147873;
+            --background: #f5f8fa;
+            --surface: #ffffff;
+            --surface-soft: #edf4f6;
+            --text: #20303c;
+            --muted: #61717c;
+            --border: #dce6e9;
+            --shadow: 0 15px 40px rgba(23, 59, 87, 0.1);
+            --radius: 18px;
+            --max-width: 1160px;
+        }
+
+        body.dark-theme {
+            --primary: #7cc9df;
+            --primary-light: #9bd9e9;
+            --accent: #55d5ca;
+            --accent-dark: #74e4db;
+            --background: #10181d;
+            --surface: #18242b;
+            --surface-soft: #202f37;
+            --text: #eef5f7;
+            --muted: #a8bac3;
+            --border: #30424b;
+            --shadow: 0 15px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+            font-family:
+                Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .container {
+            width: min(calc(100% - 40px), var(--max-width));
+            margin-inline: auto;
+        }
+
+        /* Header */
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            background: color-mix(in srgb, var(--background) 88%, transparent);
+            backdrop-filter: blur(18px);
+        }
+
+        .navbar {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.02rem;
+            font-weight: 750;
+            color: var(--primary);
+        }
+
+        .brand-mark {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            font-weight: 800;
+            box-shadow: 0 8px 18px rgba(32, 163, 158, 0.22);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            list-style: none;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 9px 12px;
+            border-radius: 9px;
+            color: var(--muted);
+            font-size: 0.94rem;
+            font-weight: 650;
+            transition: 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--surface-soft);
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .icon-button,
+        .menu-button {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: var(--surface);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .menu-button {
+            display: none;
+        }
+
+        /* Page layout */
+
+        main {
+            min-height: calc(100vh - 160px);
+        }
+
+        .page {
+            display: none;
+            padding: 72px 0 90px;
+        }
+
+        .page.active {
+            display: block;
+            animation: page-enter 0.35s ease;
+        }
+
+        @keyframes page-enter {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            max-width: 760px;
+            margin-bottom: 42px;
+        }
+
+        .eyebrow {
+            margin-bottom: 12px;
+            color: var(--accent-dark);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.22;
+            color: var(--primary);
+        }
+
+        h1 {
+            margin-bottom: 22px;
+            font-size: clamp(2.6rem, 7vw, 5rem);
+            letter-spacing: -0.055em;
+        }
+
+        h2 {
+            margin-bottom: 16px;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: -0.035em;
+        }
+
+        h3 {
+            margin-bottom: 10px;
+            font-size: 1.18rem;
+        }
+
+        .lead {
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        /* Buttons */
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 48px;
+            padding: 11px 20px;
+            border: 1px solid transparent;
+            border-radius: 11px;
+            font-weight: 750;
+            transition: 0.2s ease;
+        }
+
+        .button-primary {
+            background: var(--primary);
+            color: var(--background);
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(23, 59, 87, 0.2);
+        }
+
+        .button-secondary {
+            border-color: var(--border);
+            background: var(--surface);
+            color: var(--primary);
+        }
+
+        .button-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent-dark);
+        }
+
+        /* Home */
+
+        .hero {
+            min-height: 620px;
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            align-items: center;
+            gap: clamp(40px, 8vw, 100px);
+        }
+
+        .hero-description {
+            max-width: 720px;
+            color: var(--muted);
+            font-size: 1.12rem;
+        }
+
+        .hero-description + .hero-description {
+            margin-top: 15px;
+        }
+
+        .headshot-wrapper {
+            position: relative;
+            width: min(100%, 390px);
+            aspect-ratio: 4 / 5;
+            justify-self: center;
+        }
+
+        .headshot-decoration {
+            position: absolute;
+            inset: 25px -18px -18px 25px;
+            border-radius: 32px;
+            background: linear-gradient(145deg, var(--accent), var(--primary));
+            opacity: 0.18;
+        }
+
+        .headshot-fallback,
+        .headshot {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 8px solid var(--surface);
+            border-radius: 32px;
+            box-shadow: var(--shadow);
+        }
+
+        .headshot-fallback {
+            display: grid;
+            place-items: center;
+            background: linear-gradient(145deg, var(--primary), var(--accent));
+            color: white;
+            font-size: 5rem;
+            font-weight: 800;
+        }
+
+        .headshot {
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .availability {
+            position: absolute;
+            right: -24px;
+            bottom: 28px;
+            z-index: 3;
+            max-width: 220px;
+            padding: 14px 17px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            color: var(--muted);
+            font-size: 0.85rem;
+            font-weight: 650;
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+            display: inline-block;
+            margin-right: 7px;
+            border-radius: 50%;
+            background: #22ad65;
+            box-shadow: 0 0 0 4px rgba(34, 173, 101, 0.15);
+        }
+
+        .research-summary {
+            padding-top: 24px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 26px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface);
+            box-shadow: 0 8px 25px rgba(23, 59, 87, 0.05);
+            transition: 0.22s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+            box-shadow: var(--shadow);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 18px;
+            border-radius: 13px;
+            background: var(--surface-soft);
+            color: var(--accent-dark);
+            font-size: 1.35rem;
+            font-weight: 800;
+        }
+
+        .card p {
+            color: var(--muted);
+        }
+
+        /* Publications */
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+
+        .filter-button {
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: var(--surface);
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .filter-button:hover,
+        .filter-button.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--background);
+        }
+
+        .publication-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .publication {
+            display: grid;
+            grid-template-columns: 78px 1fr;
+            gap: 24px;
+            padding: 26px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface);
+        }
+
+        .publication.hidden {
+            display: none;
+        }
+
+        .publication-year {
+            color: var(--accent-dark);
+            font-size: 1.05rem;
+            font-weight: 800;
+        }
+
+        .publication-authors,
+        .publication-journal {
+            color: var(--muted);
+        }
+
+        .publication-journal {
+            margin-top: 7px;
+            font-style: italic;
+        }
+
+        .publication-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .text-link {
+            color: var(--accent-dark);
+            font-size: 0.9rem;
+            font-weight: 750;
+        }
+
+        .text-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Blog */
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .blog-card {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface);
+        }
+
+        .blog-visual {
+            min-height: 185px;
+            display: grid;
+            place-items: center;
+            background:
+                radial-gradient(
+                    circle at 30% 20%,
+                    rgba(255, 255, 255, 0.3),
+                    transparent 30%
+                ),
+                linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            font-size: 2.7rem;
+            font-weight: 800;
+        }
+
+        .blog-content {
+            padding: 26px;
+        }
+
+        .blog-date {
+            margin-bottom: 10px;
+            color: var(--accent-dark);
+            font-size: 0.82rem;
+            font-weight: 750;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .blog-content p {
+            margin: 12px 0 18px;
+            color: var(--muted);
+        }
+
+        /* Interests */
+
+        .interest-layout {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .interest-card {
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface);
+        }
+
+        .interest-number {
+            display: block;
+            margin-bottom: 18px;
+            color: var(--accent);
+            font-size: 2.4rem;
+            font-weight: 800;
+        }
+
+        .interest-card p {
+            color: var(--muted);
+        }
+
+        /* CV */
+
+        .cv-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 300px;
+            gap: 42px;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 26px;
+        }
+
+        .timeline-section + .timeline-section {
+            margin-top: 30px;
+        }
+
+        .timeline-section h3 {
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+            font-size: 1.4rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            top: 9px;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .timeline-item::after {
+            content: "";
+            position: absolute;
+            top: 22px;
+            bottom: -26px;
+            left: 4px;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-date {
+            color: var(--accent-dark);
+            font-size: 0.85rem;
+            font-weight: 800;
+        }
+
+        .timeline-item p {
+            color: var(--muted);
+        }
+
+        .cv-sidebar {
+            align-self: start;
+            padding: 26px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 7px 11px;
+            border-radius: 8px;
+            background: var(--surface-soft);
+            color: var(--primary);
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        /* Contact */
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 50px;
+        }
+
+        .contact-details {
+            display: grid;
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-symbol {
+            width: 42px;
+            height: 42px;
+            flex: 0 0 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            background: var(--surface-soft);
+            color: var(--accent-dark);
+            font-weight: 800;
+        }
+
+        .contact-item small {
+            display: block;
+            color: var(--muted);
+        }
+
+        .contact-form {
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 750;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+            background: var(--background);
+            color: var(--text);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(32, 163, 158, 0.12);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+
+        footer {
+            padding: 28px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-dark);
+        }
+
+        /* Responsive design */
+
+        @media (max-width: 920px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 35px 0;
+            }
+
+            .hero-copy {
+                order: 2;
+            }
+
+            .headshot-wrapper {
+                order: 1;
+                width: min(76vw, 330px);
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cv-layout,
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .cv-sidebar {
+                order: -1;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: calc(100% + 1px);
+                right: 20px;
+                left: 20px;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 14px;
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                background: var(--surface);
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-link {
+                padding: 12px 14px;
+            }
+
+            .menu-button {
+                display: grid;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .container {
+                width: min(calc(100% - 28px), var(--max-width));
+            }
+
+            .brand-name {
+                display: none;
+            }
+
+            .page {
+                padding: 52px 0 70px;
+            }
+
+            .blog-grid,
+            .interest-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .publication {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+
+            .availability {
+                right: -8px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media print {
+            .site-header,
+            footer,
+            .cv-download {
+                display: none;
+            }
+
+            .page {
+                display: none !important;
+            }
+
+            #cv.page {
+                display: block !important;
+                padding: 0;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="navbar container" aria-label="Main navigation">
+            <a class="brand" href="#home">
+                <span class="brand-mark">LS</span>
+                <span class="brand-name">Lokesh Saravanan</span>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a class="nav-link active" href="#home">Home</a></li>
+                <li><a class="nav-link" href="#publications">Publications</a></li>
+                <li><a class="nav-link" href="#blog">Blog</a></li>
+                <li><a class="nav-link" href="#interests">Interests</a></li>
+                <li><a class="nav-link" href="#cv">CV</a></li>
+                <li><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button
+                    class="icon-button"
+                    id="themeButton"
+                    type="button"
+                    aria-label="Switch color theme"
+                    title="Switch color theme"
+                >
+                    ◐
+                </button>
+
+                <button
+                    class="menu-button"
+                    id="menuButton"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                >
+                    ☰
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HOME PAGE -->
+        <section class="page active" id="home">
+            <div class="container">
+                <div class="hero">
+                    <div class="hero-copy">
+                        <p class="eyebrow">
+                            Surface Science · Electrocatalysis · Nanomaterials
+                        </p>
+
+                        <h1>
+                            Hello, I’m<br>
+                            Lokesh Saravanan.
+                        </h1>
+
+                        <p class="hero-description">
+                            I am a postdoctoral researcher specializing in surface
+                            science and electrocatalysis. My research focuses on
+                            controlling the anchoring, electronic structure, and
+                            reactivity of sub-nanometer platinum clusters on modified
+                            graphitic supports.
+                        </p>
+
+                        <p class="hero-description">
+                            I combine ion implantation, physical vapor deposition,
+                            scanning tunneling microscopy, X-ray photoelectron
+                            spectroscopy, and electrochemical measurements to connect
+                            atomic-scale structure with catalytic performance.
+                        </p>
+
+                        <div class="button-group">
+                            <a class="button button-primary" href="#publications">
+                                View my research →
+                            </a>
+
+                            <a
+                                class="button button-secondary"
+                                href="Lokesh_Saravanan_CV.pdf"
+                                download
+                            >
+                                Download CV
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="headshot-wrapper">
+                        <div class="headshot-decoration"></div>
+                        <div class="headshot-fallback" aria-hidden="true">LS</div>
+
+                        <!-- Replace headshot.jpg with your photograph -->
+                        <img
+                            class="headshot"
+                            src="headshot.jpg"
+                            alt="Headshot of Lokesh Saravanan"
+                            onerror="this.style.display='none'"
+                        >
+
+                        <div class="availability">
+                            <span class="status-dot"></span>
+                            Interested in industrial R&amp;D and research collaborations
+                        </div>
+                    </div>
+                </div>
+
+                <div class="research-summary">
+                    <div class="section-header">
+                        <p class="eyebrow">Research overview</p>
+                        <h2>Connecting atomic structure with electrochemical function</h2>
+                    </div>
+
+                    <div class="card-grid">
+                        <article class="card">
+                            <div class="card-icon">01</div>
+                            <h3>Surface Modification</h3>
+                            <p>
+                                Engineering graphitic surfaces through ion implantation
+                                and oxygen functionalization to create controlled
+                                anchoring sites.
+                            </p>
+                        </article>
+
+                        <article class="card">
+                            <div class="card-icon">02</div>
+                            <h3>Sub-nano Catalysts</h3>
+                            <p>
+                                Investigating the structure, stability, and electronic
+                                properties of size-selected platinum clusters on
+                                modified HOPG.
+                            </p>
+                        </article>
+
+                        <article class="card">
+                            <div class="card-icon">03</div>
+                            <h3>Electrocatalysis</h3>
+                            <p>
+                                Relating local cluster–support interactions to oxygen
+                                reduction activity and other electrochemical reactions.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PUBLICATIONS PAGE -->
+        <section class="page" id="publications">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Research output</p>
+                    <h2>Publications</h2>
+                    <p class="lead">
+                        Selected journal articles, manuscripts, and conference
+                        presentations. Replace the example information below with your
+                        complete publication list.
+                    </p>
+                </div>
+
+                <div class="filter-bar" aria-label="Filter publications">
+                    <button class="filter-button active" data-filter="all">All</button>
+                    <button class="filter-button" data-filter="journal">
+                        Journal articles
+                    </button>
+                    <button class="filter-button" data-filter="conference">
+                        Conferences
+                    </button>
+                    <button class="filter-button" data-filter="manuscript">
+                        Manuscripts
+                    </button>
+                </div>
+
+                <div class="publication-list">
+                    <article class="publication" data-type="manuscript">
+                        <div class="publication-year">2026</div>
+
+                        <div>
+                            <h3>
+                                Tuning the anchoring of sub-nano Pt clusters on modified
+                                HOPG supports for enhanced electrochemical reactions
+                            </h3>
+
+                            <p class="publication-authors">
+                                <strong>Lokesh Saravanan</strong>, Coauthor A,
+                                Coauthor B, and Corresponding Author
+                            </p>
+
+                            <p class="publication-journal">
+                                Manuscript information, journal, volume, pages and year
+                            </p>
+
+                            <div class="publication-links">
+                                <a class="text-link" href="#">Abstract</a>
+                                <a class="text-link" href="#">DOI</a>
+                                <a class="text-link" href="#">PDF</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="publication" data-type="journal">
+                        <div class="publication-year">2025</div>
+
+                        <div>
+                            <h3>Add your published article title here</h3>
+
+                            <p class="publication-authors">
+                                Author A, <strong>Lokesh Saravanan</strong>, Author B
+                            </p>
+
+                            <p class="publication-journal">
+                                Journal Name, Volume, Page–Page
+                            </p>
+
+                            <div class="publication-links">
+                                <a class="text-link" href="#">DOI</a>
+                                <a class="text-link" href="#">PDF</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="publication" data-type="journal">
+                        <div class="publication-year">2024</div>
+
+                        <div>
+                            <h3>Add another publication title here</h3>
+
+                            <p class="publication-authors">
+                                <strong>Lokesh Saravanan</strong>, Author B, Author C
+                            </p>
+
+                            <p class="publication-journal">
+                                Journal Name, Volume, Page–Page
+                            </p>
+
+                            <div class="publication-links">
+                                <a class="text-link" href="#">DOI</a>
+                                <a class="text-link" href="#">PDF</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="publication" data-type="conference">
+                        <div class="publication-year">2026</div>
+
+                        <div>
+                            <h3>Add the title of your conference presentation here</h3>
+
+                            <p class="publication-authors">
+                                <strong>Lokesh Saravanan</strong>
+                            </p>
+
+                            <p class="publication-journal">
+                                Conference Name, City, State
+                            </p>
+
+                            <div class="publication-links">
+                                <a class="text-link" href="#">Conference website</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOG PAGE -->
+        <section class="page" id="blog">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Ideas and experiences</p>
+                    <h2>Blog</h2>
+                    <p class="lead">
+                        Notes about surface science, electrochemistry, research
+                        instrumentation, career development, and scientific community
+                        building.
+                    </p>
+                </div>
+
+                <div class="blog-grid">
+                    <article class="blog-card">
+                        <div class="blog-visual">Pt</div>
+
+                        <div class="blog-content">
+                            <p class="blog-date">Coming soon · Research</p>
+                            <h3>Why cluster size matters in electrocatalysis</h3>
+                            <p>
+                                A concise introduction to how size-selected clusters
+                                help connect atomic structure with catalytic activity.
+                            </p>
+                            <a class="text-link" href="#">Read article →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-visual">STM</div>
+
+                        <div class="blog-content">
+                            <p class="blog-date">Coming soon · Instrumentation</p>
+                            <h3>Studying catalysts without air exposure</h3>
+                            <p>
+                                How integrated deposition, characterization, and
+                                electrochemistry reveal surface properties that are
+                                easily altered in air.
+                            </p>
+                            <a class="text-link" href="#">Read article →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-visual">ORR</div>
+
+                        <div class="blog-content">
+                            <p class="blog-date">Coming soon · Electrochemistry</p>
+                            <h3>Understanding oxygen reduction measurements</h3>
+                            <p>
+                                An accessible guide to interpreting common ORR
+                                measurements and evaluating electrocatalyst performance.
+                            </p>
+                            <a class="text-link" href="#">Read article →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-visual">UPDA</div>
+
+                        <div class="blog-content">
+                            <p class="blog-date">Coming soon · Community</p>
+                            <h3>Building stronger postdoctoral communities</h3>
+                            <p>
+                                Reflections on professional development, peer support,
+                                and creating sustainable scientific communities.
+                            </p>
+                            <a class="text-link" href="#">Read article →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERESTS PAGE -->
+        <section class="page" id="interests">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">What motivates me</p>
+                    <h2>Professional interests</h2>
+                    <p class="lead">
+                        My interests span fundamental surface science, practical
+                        catalyst development, advanced instrumentation, and scientific
+                        community engagement.
+                    </p>
+                </div>
+
+                <div class="interest-layout">
+                    <article class="interest-card">
+                        <span class="interest-number">01</span>
+                        <h3>Advanced materials</h3>
+                        <p>
+                            Designing nanoscale materials with controlled composition,
+                            morphology, surface chemistry, and electronic structure.
+                        </p>
+                    </article>
+
+                    <article class="interest-card">
+                        <span class="interest-number">02</span>
+                        <h3>Electrochemical energy</h3>
+                        <p>
+                            Developing structure–activity relationships for
+                            electrocatalysts used in energy conversion and sustainable
+                            chemical processes.
+                        </p>
+                    </article>
+
+                    <article class="interest-card">
+                        <span class="interest-number">03</span>
+                        <h3>Research instrumentation</h3>
+                        <p>
+                            Building and operating integrated systems for material
+                            deposition, surface characterization, and electrochemical
+                            analysis.
+                        </p>
+                    </article>
+
+                    <article class="interest-card">
+                        <span class="interest-number">04</span>
+                        <h3>Scientific communication</h3>
+                        <p>
+                            Communicating complex scientific ideas clearly and creating
+                            opportunities for researchers to connect and collaborate.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CV PAGE -->
+        <section class="page" id="cv">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Curriculum vitae</p>
+                    <h2>Experience and expertise</h2>
+
+                    <div class="button-group cv-download">
+                        <a
+                            class="button button-primary"
+                            href="Lokesh_Saravanan_CV.pdf"
+                            download
+                        >
+                            Download complete CV
+                        </a>
+
+                        <button
+                            class="button button-secondary"
+                            type="button"
+                            onclick="window.print()"
+                        >
+                            Print this page
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cv-layout">
+                    <div>
+                        <section class="timeline-section">
+                            <h3>Research experience</h3>
+
+                            <div class="timeline">
+                                <article class="timeline-item">
+                                    <p class="timeline-date">2024–Present</p>
+                                    <h3>Postdoctoral Research Associate</h3>
+                                    <p>University of Utah, Salt Lake City, Utah</p>
+                                    <p>
+                                        Investigation of size-selected platinum
+                                        clusters on chemically modified HOPG using
+                                        UHV deposition, STM, XPS, and electrochemistry.
+                                    </p>
+                                </article>
+
+                                <article class="timeline-item">
+                                    <p class="timeline-date">Add dates</p>
+                                    <h3>Previous research position</h3>
+                                    <p>Institution and location</p>
+                                    <p>
+                                        Add a concise description of your primary
+                                        responsibilities and research accomplishments.
+                                    </p>
+                                </article>
+                            </div>
+                        </section>
+
+                        <section class="timeline-section">
+                            <h3>Education</h3>
+
+                            <div class="timeline">
+                                <article class="timeline-item">
+                                    <p class="timeline-date">Add year</p>
+                                    <h3>Ph.D. in Your Field</h3>
+                                    <p>University name and location</p>
+                                    <p>
+                                        Dissertation: Add the title of your doctoral
+                                        dissertation.
+                                    </p>
+                                </article>
+
+                                <article class="timeline-item">
+                                    <p class="timeline-date">Add year</p>
+                                    <h3>Previous degree</h3>
+                                    <p>University name and location</p>
+                                </article>
+                            </div>
+                        </section>
+
+                        <section class="timeline-section">
+                            <h3>Professional service</h3>
+
+                            <div class="timeline">
+                                <article class="timeline-item">
+                                    <p class="timeline-date">Present</p>
+                                    <h3>Postdoctoral community engagement</h3>
+                                    <p>
+                                        Supporting professional development,
+                                        networking, outreach, and community-building
+                                        activities for postdoctoral researchers.
+                                    </p>
+                                </article>
+                            </div>
+                        </section>
+                    </div>
+
+                    <aside class="cv-sidebar">
+                        <h3>Technical expertise</h3>
+
+                        <ul class="skill-list">
+                            <li>Electrochemistry</li>
+                            <li>UHV systems</li>
+                            <li>STM</li>
+                            <li>XPS</li>
+                            <li>Ion implantation</li>
+                            <li>Cluster deposition</li>
+                            <li>ORR</li>
+                            <li>RDE</li>
+                            <li>Surface science</li>
+                            <li>Nanomaterials</li>
+                            <li>Data analysis</li>
+                            <li>Scientific writing</li>
+                        </ul>
+
+                        <h3 style="margin-top: 30px;">Research focus</h3>
+
+                        <ul class="skill-list">
+                            <li>Sub-nano catalysts</li>
+                            <li>Metal–support interactions</li>
+                            <li>Graphitic supports</li>
+                            <li>Structure–activity relationships</li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section class="page" id="contact">
+            <div class="container">
+                <div class="contact-layout">
+                    <div>
+                        <p class="eyebrow">Get in touch</p>
+                        <h2>Let’s connect</h2>
+
+                        <p class="lead">
+                            I welcome conversations about research collaborations,
+                            industrial R&amp;D opportunities, surface characterization,
+                            electrocatalysis, and scientific community initiatives.
+                        </p>
+
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="contact-symbol">@</span>
+                                <div>
+                                    <strong>Email</strong>
+                                    <small>
+                                        <a href="mailto:your.email@university.edu">
+                                            your.email@university.edu
+                                        </a>
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <span class="contact-symbol">⌖</span>
+                                <div>
+                                    <strong>Location</strong>
+                                    <small>Salt Lake City, Utah, USA</small>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <span class="contact-symbol">in</span>
+                                <div>
+                                    <strong>LinkedIn</strong>
+                                    <small>
+                                        <a
+                                            href="https://www.linkedin.com/"
+                                            target="_blank"
+                                            rel="noopener"
+                                        >
+                                            View my LinkedIn profile
+                                        </a>
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <span class="contact-symbol">GS</span>
+                                <div>
+                                    <strong>Google Scholar</strong>
+                                    <small>
+                                        <a
+                                            href="https://scholar.google.com/"
+                                            target="_blank"
+                                            rel="noopener"
+                                        >
+                                            View my publications
+                                        </a>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                autocomplete="name"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                autocomplete="email"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input
+                                id="subject"
+                                name="subject"
+                                type="text"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                required
+                            ></textarea>
+                        </div>
+
+                        <button class="button button-primary" type="submit">
+                            Send message →
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>
+                © <span id="currentYear"></span> Lokesh Saravanan.
+                All rights reserved.
+            </p>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
+                    LinkedIn
+                </a>
+
+                <a href="https://scholar.google.com/" target="_blank" rel="noopener">
+                    Google Scholar
+                </a>
+
+                <a href="https://orcid.org/" target="_blank" rel="noopener">
+                    ORCID
+                </a>
+
+                <a href="mailto:your.email@university.edu">
+                    Email
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const pages = document.querySelectorAll(".page");
+        const navLinks = document.querySelectorAll(".nav-link");
+        const navMenu = document.getElementById("navLinks");
+        const menuButton = document.getElementById("menuButton");
+        const themeButton = document.getElementById("themeButton");
+
+        /*
+         * Change this address to your real email.
+         */
+        const contactEmail = "your.email@university.edu";
+
+        function showPage() {
+            const requestedPage = window.location.hash.substring(1) || "home";
+            const targetPage = document.getElementById(requestedPage);
+            const pageName = targetPage?.classList.contains("page")
+                ? requestedPage
+                : "home";
+
+            pages.forEach((page) => {
+                page.classList.toggle("active", page.id === pageName);
+            });
+
+            navLinks.forEach((link) => {
+                const isActive = link.getAttribute("href") === `#${pageName}`;
+                link.classList.toggle("active", isActive);
+
+                if (isActive) {
+                    link.setAttribute("aria-current", "page");
+                } else {
+                    link.removeAttribute("aria-current");
+                }
+            });
+
+            navMenu.classList.remove("open");
+            menuButton.setAttribute("aria-expanded", "false");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        window.addEventListener("hashchange", showPage);
+        window.addEventListener("DOMContentLoaded", showPage);
+
+        menuButton.addEventListener("click", () => {
+            const isOpen = navMenu.classList.toggle("open");
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        /*
+         * Publication filtering
+         */
+        const filterButtons = document.querySelectorAll(".filter-button");
+        const publications = document.querySelectorAll(".publication");
+
+        filterButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const selectedFilter = button.dataset.filter;
+
+                filterButtons.forEach((item) => {
+                    item.classList.toggle("active", item === button);
+                });
+
+                publications.forEach((publication) => {
+                    const shouldDisplay =
+                        selectedFilter === "all" ||
+                        publication.dataset.type === selectedFilter;
+
+                    publication.classList.toggle("hidden", !shouldDisplay);
+                });
+            });
+        });
+
+        /*
+         * Light/dark theme
+         */
+        const savedTheme = localStorage.getItem("website-theme");
+
+        if (savedTheme === "dark") {
+            document.body.classList.add("dark-theme");
+        }
+
+        themeButton.addEventListener("click", () => {
+            document.body.classList.toggle("dark-theme");
+
+            const theme = document.body.classList.contains("dark-theme")
+                ? "dark"
+                : "light";
+
+            localStorage.setItem("website-theme", theme);
+        });
+
+        /*
+         * Static contact form
+         *
+         * This opens the visitor's email application. For direct online form
+         * submission, connect the form to Formspree, Netlify Forms, or a backend.
+         */
+        document
+            .getElementById("contactForm")
+            .addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                const form = new FormData(event.currentTarget);
+                const senderName = form.get("name");
+                const senderEmail = form.get("email");
+                const subject = form.get("subject");
+                const message = form.get("message");
+
+                const emailBody =
+                    `Name: ${senderName}\n` +
+                    `Email: ${senderEmail}\n\n` +
+                    `${message}`;
+
+                window.location.href =
+                    `mailto:${contactEmail}` +
+                    `?subject=${encodeURIComponent(subject)}` +
+                    `&body=${encodeURIComponent(emailBody)}`;
+            });
+
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+    </script>
+</body>
+</html>
