@@ -491,6 +491,73 @@
             text-decoration: underline;
         }
 
+        /* Expandable publication abstracts */
+
+        .abstract-button {
+            padding: 0;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .abstract-button::after {
+            content: " +";
+        }
+
+        .abstract-button[aria-expanded="true"]::after {
+            content: " −";
+        }
+
+        .publication-abstract {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition:
+                max-height 0.5s ease,
+                opacity 0.35s ease,
+                margin-top 0.35s ease,
+                padding-top 0.35s ease;
+        }
+
+        .publication-abstract.open {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            opacity: 1;
+        }
+
+        .abstract-layout {
+            display: grid;
+            grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        .abstract-figure {
+            margin: 0;
+        }
+
+        .abstract-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: white;
+        }
+
+        .abstract-text h4 {
+            margin-bottom: 12px;
+            color: var(--primary);
+            font-size: 1.15rem;
+        }
+
+        .abstract-text p {
+            color: var(--muted);
+            line-height: 1.75;
+            text-align: justify;
+        }
+
         /* Blog */
 
         .blog-grid {
@@ -818,6 +885,16 @@
             }
         }
 
+        @media (max-width: 760px) {
+            .abstract-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .abstract-text p {
+                text-align: left;
+            }
+        }
+
         @media (max-width: 650px) {
             .container {
                 width: min(calc(100% - 28px), var(--max-width));
@@ -1072,6 +1149,103 @@
                             </div>
                         </div>
                     </article>
+
+                    <article class="publication" data-type="journal">
+                        <div class="publication-year">2026</div>
+
+                        <div>
+                            <h3>
+                                Advances in heterostructured and atomically dispersed
+                                metallic carbon catalysts for efficient oxygen reactions
+                                in zinc–air batteries
+                            </h3>
+
+                            <p class="publication-authors">
+                                Pandiyarajan A, <strong>Lokesh Saravanan</strong>,
+                                Ching-Wei Tung, Yen-Pei Fu
+                            </p>
+
+                            <p class="publication-journal">
+                                Coordination Chemistry Reviews, 558, 217795
+                            </p>
+
+                            <div class="publication-links">
+                                <button
+                                    class="text-link abstract-button"
+                                    type="button"
+                                    aria-expanded="false"
+                                    aria-controls="abstract-zab-2026"
+                                >
+                                    <span class="abstract-button-label">Abstract</span>
+                                </button>
+
+                                <a
+                                    class="text-link"
+                                    href="https://www.sciencedirect.com/science/article/pii/S0010854526002316"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    DOI
+                                </a>
+                            </div>
+
+                            <div
+                                class="publication-abstract"
+                                id="abstract-zab-2026"
+                                aria-hidden="true"
+                            >
+                                <div class="abstract-layout">
+                                    <figure class="abstract-figure">
+                                        <img
+                                            class="abstract-image"
+                                            src="zab-review-illustration.jpg"
+                                            alt="Illustration of heterostructured and atomically dispersed metallic carbon catalysts for zinc–air batteries"
+                                        >
+                                    </figure>
+
+                                    <div class="abstract-text">
+                                        <h4>Abstract</h4>
+
+                                        <p>
+                                            Zinc–air batteries (ZAB) are emerging as cost-effective energy
+                                            storage devices with significant potential for wearable
+                                            technologies, owing to their high energy density, excellent
+                                            safety, and environmental friendliness. However, large-scale
+                                            implementation is constrained by sluggish oxygen reaction
+                                            kinetics at the air cathode electrode, which requires the use of
+                                            non-precious electrocatalysts. Addressing this challenge requires
+                                            the development of transition metal-based oxygen electrocatalysts
+                                            to improve the overall performance of ZABs. Atomically dispersed
+                                            metals on nitrogen-coordinated carbon
+                                            (M–N<sub>x</sub>–C) electrocatalysts have received considerable
+                                            attention for their high oxygen reduction reaction (ORR) activity,
+                                            often surpassing that of precious metal catalysts. These
+                                            single-atom catalyst (SAC, M–N<sub>x</sub>–C) electrocatalysts
+                                            with mono-metallic active sites typically exhibit limited oxygen
+                                            evolution reaction (OER) activity, as their mono-active sites
+                                            restrict bifunctionality. Integrating ORR active SACs with OER
+                                            active materials can construct multi-metallic electrocatalysts
+                                            that increase the number of active sites and promote multielectron
+                                            processes, thereby addressing these limitations and fulfilling
+                                            the performance requirements of ZABs. This review first outlines
+                                            the configuration of ZAB components and mechanisms of oxygen
+                                            electrochemistry at the air cathode and zinc anode. It then
+                                            summarizes SACs and metal nanoparticle electrocatalyst
+                                            hybridization, their mechanistic pathways, and the synthesis
+                                            strategies for hybrid catalysts. The ZAB performance of various
+                                            hybrid electrocatalysts is subsequently discussed, along with
+                                            machine learning approaches for screening and designing SACs with
+                                            optimal properties for energy storage and conversion. Finally,
+                                            future research directions for SACs in ZAB are proposed, providing
+                                            a framework for rational and precise design of next-generation
+                                            systems.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
 
                     <article class="publication" data-type="journal">
                         <div class="publication-year">2025</div>
@@ -1413,7 +1587,7 @@
                                     <strong>Email</strong>
                                     <small>
                                         <a href="mailto:lokesh.saravanan@utah.edu">
-                                            your.email@university.edu
+                                            lokesh.saravanan@utah.edu
                                         </a>
                                     </small>
                                 </div>
@@ -1608,6 +1782,54 @@
                     publication.classList.toggle("hidden", !shouldDisplay);
                 });
             });
+        });
+
+        /*
+         * Expandable publication abstracts
+         */
+        document.querySelectorAll(".abstract-button").forEach((button) => {
+            button.addEventListener("click", () => {
+                const abstractID = button.getAttribute("aria-controls");
+                const abstractPanel = document.getElementById(abstractID);
+                const buttonLabel = button.querySelector(".abstract-button-label");
+                const isExpanded =
+                    button.getAttribute("aria-expanded") === "true";
+
+                button.setAttribute("aria-expanded", String(!isExpanded));
+                abstractPanel.setAttribute("aria-hidden", String(isExpanded));
+                abstractPanel.classList.toggle("open", !isExpanded);
+                buttonLabel.textContent = isExpanded
+                    ? "Abstract"
+                    : "Hide abstract";
+
+                abstractPanel.style.maxHeight = isExpanded
+                    ? "0px"
+                    : `${abstractPanel.scrollHeight}px`;
+            });
+        });
+
+        /*
+         * Recalculate the panel height after an illustration loads or the
+         * browser window changes size.
+         */
+        document.querySelectorAll(".publication-abstract img").forEach((image) => {
+            image.addEventListener("load", () => {
+                const abstractPanel = image.closest(".publication-abstract");
+
+                if (abstractPanel.classList.contains("open")) {
+                    abstractPanel.style.maxHeight =
+                        `${abstractPanel.scrollHeight}px`;
+                }
+            });
+        });
+
+        window.addEventListener("resize", () => {
+            document
+                .querySelectorAll(".publication-abstract.open")
+                .forEach((abstractPanel) => {
+                    abstractPanel.style.maxHeight =
+                        `${abstractPanel.scrollHeight}px`;
+                });
         });
 
         /*
