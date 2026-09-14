@@ -1186,8 +1186,7 @@
                             </h3>
 
                             <p class="publication-authors">
-                                Pandiyarajan A, <strong>Lokesh Saravanan</strong>,
-                                Ching-Wei Tung, Yen-Pei Fu
+                                Pandiyarajan Anand; <strong>Lokesh Saravanan</strong>; Ching-Wei Tung*; Yen-Pei Fu*
                             </p>
 
                             <p class="publication-journal">
@@ -1255,6 +1254,82 @@
                                             future research directions for SACs in ZAB are proposed, providing
                                             a framework for rational and precise design of next-generation
                                             systems.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+<article class="publication" data-type="journal">
+                        <div class="publication-year">2025</div>
+
+                        <div>
+                            <h3>
+                                <a
+                                    class="publication-title-link"
+                                    href="https://pubs.acs.org/jacsat/article/147/52/48192/3740559/Highly-Active-Hydrogen-Evolution-Reaction-HER"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Highly Active Hydrogen Evolution Reaction (HER) Catalysts Formed by Energetic 
+                                    Pt<sub><em>n</em></sub> Cluster Deposition: Deposition Dynamics and the HER Mechanism
+                                </a>
+                            </h3>
+
+                            <p class="publication-authors">
+                                Tsugunosuke Masubuchi; Pavel Rublev; Yulan Han; Jesus Paulo L. Perez; Matthew Boebinger; Sooyeon Hwang; <strong>Lokesh Saravanan</strong>; 
+                                David M. Belnap; Anastassia N. Alexandrova*; Scott L. Anderson*
+                            </p>
+
+                            <p class="publication-journal">
+                                Journal American Chemical Society (2025) 147 (52): 48192–48208.
+                            </p>
+
+                            <div class="publication-links">
+                                <button
+                                    class="text-link abstract-button"
+                                    type="button"
+                                    aria-expanded="false"
+                                    aria-controls="abstract-her-2025"
+                                >
+                                    <span class="abstract-button-label">Abstract</span>
+                                </button>
+                            </div>
+
+                            <div
+                                class="publication-abstract"
+                                id="abstract-her-2025"
+                                aria-hidden="true"
+                            >
+                                <div class="abstract-layout">
+                                    <figure class="abstract-figure">
+                                        <img
+                                            class="abstract-image"
+                                            src="her-catalyst-illustration.png"
+                                            alt="Illustration of platinum cluster deposition and hydrogen evolution catalysis on HOPG"
+                                        >
+                                    </figure>
+
+                                    <div class="abstract-text">
+                                        <h4>Abstract</h4>
+
+                                        <p>
+                                            Mass-selected Pt<sub><em>n</em></sub><sup>+</sup> (<em>n</em> ≤ 7) were deposited at variable energies on highly oriented pyrolytic graphite (HOPG),
+                                            creating highly active hydrogen evolution reaction (HER) electrocatalysts. HER mass activities were ∼2 to >10 times
+                                            higher than those for the surface atoms in bulk Pt and for Pt<sub><em>n</em></sub> deposited on several other supports. Thus, high 
+                                            activity reflects the Pt–C structures formed by energetic Pt<sub><em>n</em></sub>–HOPG impacts, in addition to high Pt surface availability.
+                                            The Pt<sub><em>n</em></sub>/HOPG electrodes were probed by X-ray photoelectron spectroscopy, low energy ion scattering, and electron 
+                                            microscopy. Born–Oppenheimer molecular dynamics (BOMD) was used to simulate Pt<sub><em>n</em></sub>–HOPG impacts, revealing the types 
+                                            of structures formed at different energies, then DFT was used to probe their most important HER pathways. For low 
+                                            deposition energies, the Pt<sub><em>n</em></sub> deposit onto the HOPG surface with subunit sticking probability, aggregating at defects.
+                                            With increasing deposition energy, the sticking probability initially decreases, then rises to unity as subplantation
+                                            and defect creation allow formation of strongly bonded platinum–carbon structures. Barriers for HER on these 
+                                            structures were found to be low and weakly dependent on Pt<sub><em>n</em></sub> size, consistent with experiment. The activities were 
+                                            highest for small covalently bonded Pt–C structures created at high deposition energies. The larger aggregated
+                                            structures formed at low energies were less active, but still substantially better than the bulk Pt surface 
+                                            monolayer. The catalysts were stable in repeated potential cycling at reducing potentials, but electrodes containing
+                                            subplanted Pt became more active when scanned to oxidizing potentials, due to emergence of subplanted Pt onto the surface.
                                         </p>
                                     </div>
                                 </div>
@@ -1803,9 +1878,23 @@
         /*
          * Expandable publication abstracts
          */
-        document.querySelectorAll(".abstract-button").forEach((button) => {
-            const abstractID = button.getAttribute("aria-controls");
-            const abstractPanel = document.getElementById(abstractID);
+        document.querySelectorAll(".publication").forEach((publication, index) => {
+            const button = publication.querySelector(".abstract-button");
+            const abstractPanel = publication.querySelector(".publication-abstract");
+
+            /* Skip publication cards that do not contain an abstract panel. */
+            if (!button || !abstractPanel) {
+                return;
+            }
+
+            /*
+             * Create a unique relationship for every publication. This keeps
+             * each button connected only to the abstract in its own card,
+             * even when more publications are added later.
+             */
+            const abstractID = `publication-abstract-${index + 1}`;
+            abstractPanel.id = abstractID;
+            button.setAttribute("aria-controls", abstractID);
 
             abstractPanel.addEventListener("transitionend", (event) => {
                 if (
