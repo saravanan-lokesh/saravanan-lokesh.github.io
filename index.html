@@ -819,6 +819,27 @@
             resize: vertical;
         }
 
+        .contact-form button:disabled {
+            cursor: wait;
+            opacity: 0.65;
+        }
+
+        .form-status {
+            min-height: 1.7em;
+            margin-top: 16px;
+            color: var(--muted);
+            font-size: 0.92rem;
+            font-weight: 650;
+        }
+
+        .form-status.success {
+            color: var(--accent-dark);
+        }
+
+        .form-status.error {
+            color: #c83b3b;
+        }
+
         /* Footer */
 
         footer {
@@ -1362,7 +1383,7 @@
                                     class="text-link abstract-button"
                                     type="button"
                                     aria-expanded="false"
-                                    aria-controls="abstract-her-2025"
+                                    aria-controls="abstract-air-exposure-2025"
                                 >
                                     <span class="abstract-button-label">Abstract</span>
                                 </button>
@@ -1370,7 +1391,7 @@
 
                             <div
                                 class="publication-abstract"
-                                id="abstract-her-2025"
+                                id="abstract-air-exposure-2025"
                                 aria-hidden="true"
                             >
                                 <div class="abstract-layout">
@@ -1433,7 +1454,7 @@
                                     class="text-link abstract-button"
                                     type="button"
                                     aria-expanded="false"
-                                    aria-controls="abstract-her-2025"
+                                    aria-controls="abstract-wp2-ru-2024"
                                 >
                                     <span class="abstract-button-label">Abstract</span>
                                 </button>
@@ -1441,7 +1462,7 @@
 
                             <div
                                 class="publication-abstract"
-                                id="abstract-her-2025"
+                                id="abstract-wp2-ru-2024"
                                 aria-hidden="true"
                             >
                                 <div class="abstract-layout">
@@ -1506,7 +1527,7 @@
                                     class="text-link abstract-button"
                                     type="button"
                                     aria-expanded="false"
-                                    aria-controls="abstract-her-2025"
+                                    aria-controls="abstract-tio2-carbon-2021"
                                 >
                                     <span class="abstract-button-label">Abstract</span>
                                 </button>
@@ -1514,7 +1535,7 @@
 
                             <div
                                 class="publication-abstract"
-                                id="abstract-her-2025"
+                                id="abstract-tio2-carbon-2021"
                                 aria-hidden="true"
                             >
                                 <div class="abstract-layout">
@@ -1899,7 +1920,16 @@
                         </div>
                     </div>
 
-                    <form class="contact-form" id="contactForm">
+                    <!--
+                        Replace YOUR_FORM_ID below with the form ID from your
+                        Formspree dashboard, for example: https://formspree.io/f/abcxyzde
+                    -->
+                    <form
+                        class="contact-form"
+                        id="contactForm"
+                        action="https://formspree.io/f/moevadqo"
+                        method="POST"
+                    >
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input
@@ -1941,9 +1971,30 @@
                             ></textarea>
                         </div>
 
-                        <button class="button button-primary" type="submit">
-                            Send message →
+                        <!-- Honeypot field to help filter automated spam. -->
+                        <input
+                            type="text"
+                            name="_gotcha"
+                            tabindex="-1"
+                            autocomplete="off"
+                            aria-hidden="true"
+                            style="display: none;"
+                        >
+
+                        <button
+                            class="button button-primary"
+                            id="contactSubmitButton"
+                            type="submit"
+                        >
+                            <span id="contactSubmitLabel">Send message →</span>
                         </button>
+
+                        <p
+                            class="form-status"
+                            id="contactFormStatus"
+                            role="status"
+                            aria-live="polite"
+                        ></p>
                     </form>
                 </div>
             </div>
@@ -1983,11 +2034,6 @@
         const navMenu = document.getElementById("navLinks");
         const menuButton = document.getElementById("menuButton");
         const themeButton = document.getElementById("themeButton");
-
-        /*
-         * Change this address to your real email.
-         */
-        const contactEmail = "your.email@university.edu";
 
         function showPage() {
             const requestedPage = window.location.hash.substring(1) || "home";
@@ -2157,32 +2203,67 @@
         });
 
         /*
-         * Static contact form
-         *
-         * This opens the visitor's email application. For direct online form
-         * submission, connect the form to Formspree, Netlify Forms, or a backend.
+         * Submit the contact form within the webpage using Formspree.
          */
-        document
-            .getElementById("contactForm")
-            .addEventListener("submit", (event) => {
-                event.preventDefault();
+        const contactForm = document.getElementById("contactForm");
+        const contactSubmitButton =
+            document.getElementById("contactSubmitButton");
+        const contactSubmitLabel =
+            document.getElementById("contactSubmitLabel");
+        const contactFormStatus =
+            document.getElementById("contactFormStatus");
 
-                const form = new FormData(event.currentTarget);
-                const senderName = form.get("name");
-                const senderEmail = form.get("email");
-                const subject = form.get("subject");
-                const message = form.get("message");
+        contactForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
 
-                const emailBody =
-                    `Name: ${senderName}\n` +
-                    `Email: ${senderEmail}\n\n` +
-                    `${message}`;
+            contactFormStatus.className = "form-status";
 
-                window.location.href =
-                    `mailto:${contactEmail}` +
-                    `?subject=${encodeURIComponent(subject)}` +
-                    `&body=${encodeURIComponent(emailBody)}`;
-            });
+            if (contactForm.action.includes("YOUR_FORM_ID")) {
+                contactFormStatus.textContent =
+                    "Form setup is incomplete. Add your Formspree form ID to the HTML.";
+                contactFormStatus.classList.add("error");
+                return;
+            }
+
+            contactSubmitButton.disabled = true;
+            contactSubmitLabel.textContent = "Sending…";
+            contactFormStatus.textContent = "Sending your message…";
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: contactForm.method,
+                    body: new FormData(contactForm),
+                    headers: {
+                        Accept: "application/json"
+                    }
+                });
+
+                if (!response.ok) {
+                    const result = await response.json().catch(() => null);
+                    const errorMessage = result?.errors
+                        ?.map((error) => error.message)
+                        .join(" ");
+
+                    throw new Error(
+                        errorMessage ||
+                        "The message could not be sent. Please try again."
+                    );
+                }
+
+                contactForm.reset();
+                contactFormStatus.textContent =
+                    "Thank you! Your message was sent successfully.";
+                contactFormStatus.classList.add("success");
+            } catch (error) {
+                contactFormStatus.textContent =
+                    error.message ||
+                    "The message could not be sent. Please try again.";
+                contactFormStatus.classList.add("error");
+            } finally {
+                contactSubmitButton.disabled = false;
+                contactSubmitLabel.textContent = "Send message →";
+            }
+        });
 
         document.getElementById("currentYear").textContent =
             new Date().getFullYear();
