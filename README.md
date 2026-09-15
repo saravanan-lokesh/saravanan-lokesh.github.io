@@ -10,25 +10,7 @@ Live website: https://saravanan-lokesh.github.io/
 
 
 
-About Me
-
-
-
-I am a postdoctoral researcher specializing in surface science, electrocatalysis, and nanomaterials. My research focuses on understanding and controlling the anchoring, electronic structure, stability, and catalytic activity of size-selected platinum clusters on modified graphitic supports.
-
-
-
-My postdoctoral research is jointly supported by the NSF Center for Synthetic Organic Electrochemistry (NSF-CSOE) and the U.S. Department of Energy (DOE).
-
-
-
-Website Sections
-
-
-
 The website includes:
-
-
 
 Home and research biography
 
@@ -48,25 +30,9 @@ Contact information
 
 This website was developed using:
 
-
-
 HTML5
 
 GitHub Pages
-
-
-
-
-
-Connect With Me
-
-
-
-LinkedIn
-
-Google Scholar
-
-ORCID
 
 
 
