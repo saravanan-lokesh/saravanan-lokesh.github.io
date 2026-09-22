@@ -652,6 +652,84 @@
             color: var(--muted);
         }
 
+        .interest-subpage-cta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            margin-top: 30px;
+            padding: 28px 30px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: linear-gradient(
+                135deg,
+                var(--surface),
+                var(--surface-soft)
+            );
+        }
+
+        .interest-subpage-cta p {
+            max-width: 690px;
+            color: var(--muted);
+        }
+
+        .subpage-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 28px;
+            color: var(--accent-dark);
+            font-weight: 750;
+        }
+
+        .subpage-back-link:hover {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .outreach-highlight {
+            display: grid;
+            grid-template-columns: 150px minmax(0, 1fr);
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 32px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface);
+            box-shadow: var(--shadow);
+        }
+
+        .outreach-year {
+            display: grid;
+            place-items: center;
+            min-height: 130px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .outreach-highlight p {
+            color: var(--muted);
+        }
+
+        @media (max-width: 760px) {
+            .interest-subpage-cta {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .outreach-highlight {
+                grid-template-columns: 1fr;
+            }
+
+            .outreach-year {
+                min-height: 90px;
+            }
+        }
+
         /* CV */
 
         .cv-layout {
@@ -1080,8 +1158,7 @@
                     <div class="headshot-wrapper">
                         <div class="headshot-decoration"></div>
                         <div class="headshot-fallback" aria-hidden="true">LS</div>
-
-                        <!-- Replace headshot.jpg with your photograph -->
+                        
                         <img
                             class="headshot"
                             src="images/headshot.jpg"
@@ -1723,6 +1800,93 @@
                         </p>
                     </article>
                 </div>
+
+                <div class="interest-subpage-cta">
+                    <div>
+                        <h3>Beyond the Lab</h3>
+                        <p>
+                            Explore my interests in science outreach, student engagement,
+                            creative problem-solving, and community-centered learning.
+                        </p>
+                    </div>
+
+                    <a class="button button-primary" href="#outside-lab">
+                        View outside interests →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUTSIDE-LAB INTERESTS SUBPAGE -->
+        <section class="page" id="outside-lab">
+            <div class="container">
+                <a class="subpage-back-link" href="#interests">
+                    ← Back to professional interests
+                </a>
+
+                <div class="section-header">
+                    <p class="eyebrow">Beyond the laboratory</p>
+                    <h2>Interests outside the lab</h2>
+                    <p class="lead">
+                        Outside my research, I enjoy creating opportunities that make
+                        science engaging, collaborative, and accessible to students and
+                        the broader community.
+                    </p>
+                </div>
+
+                <article class="outreach-highlight">
+                    <div class="outreach-year">2023</div>
+
+                    <div>
+                        <p class="eyebrow">Featured involvement</p>
+                        <h3>Creative Science Practical Challenge Competition Camp</h3>
+                        <p>
+                            Helped organize the Creative Science Practical Challenge
+                            Competition Camp 2023 at Hwa-Gang Junior High School. The
+                            experience strengthened my interest in hands-on science
+                            education, youth engagement, teamwork, and encouraging
+                            students to approach scientific challenges creatively.
+                        </p>
+                    </div>
+                </article>
+
+                <div class="interest-layout">
+                    <article class="interest-card">
+                        <span class="interest-number">01</span>
+                        <h3>Science outreach</h3>
+                        <p>
+                            Making scientific ideas approachable through practical
+                            activities, demonstrations, and community programs.
+                        </p>
+                    </article>
+
+                    <article class="interest-card">
+                        <span class="interest-number">02</span>
+                        <h3>Student engagement</h3>
+                        <p>
+                            Encouraging young students to explore science with curiosity,
+                            confidence, and an experimental mindset.
+                        </p>
+                    </article>
+
+                    <article class="interest-card">
+                        <span class="interest-number">03</span>
+                        <h3>Creative problem-solving</h3>
+                        <p>
+                            Designing hands-on challenges that combine imagination,
+                            teamwork, scientific reasoning, and practical solutions.
+                        </p>
+                    </article>
+
+                    <article class="interest-card">
+                        <span class="interest-number">04</span>
+                        <h3>Community involvement</h3>
+                        <p>
+                            Supporting educational and professional communities through
+                            event organization, communication, and collaborative service.
+                        </p>
+                    </article>
+                </div>
             </div>
         </section>
 
@@ -1761,44 +1925,105 @@
                                 <article class="timeline-item">
                                     <p class="timeline-date">2024–Present</p>
                                     <h3>Postdoctoral Research Associate</h3>
-                                    <p>University of Utah, Salt Lake City, Utah</p>
+                                    <h4>University of Utah, Salt Lake City, Utah</h4>
                                     <p>
-                                        Investigation of size-selected platinum
-                                        clusters on chemically modified HOPG using
-                                        UHV deposition, STM, XPS, and electrochemistry.
+                                        Working on surface analysis, gas-phase deposition, 
+                                        and electrocatalytic materials for clean energy applications. 
+                                        My research focuses on size-selected sub-nanometer Pt clusters 
+                                        supported on electrode materials, investigating how deposition 
+                                        conditions, surface structure, air exposure, and support 
+                                        interactions influence electrocatalytic activity and stability. 
+                                        I use advanced characterization and electrochemical methods to 
+                                        connect surface chemistry with catalyst performance and support 
+                                        the development of high-performance materials for hydrogen 
+                                        evolution and oxygen reduction reactions.
                                     </p>
                                 </article>
 
                                 <article class="timeline-item">
-                                    <p class="timeline-date">Add dates</p>
-                                    <h3>Previous research position</h3>
-                                    <p>Institution and location</p>
+                                    <p class="timeline-date">2018-2024</p>
+                                    <h3>Doctoral Researcher</h3>
+                                    <h4>National Dong Hwa University, Hualien, Taiwan</h4>
                                     <p>
-                                        Add a concise description of your primary
-                                        responsibilities and research accomplishments.
+                                        Conducted doctoral research on the development of functional 
+                                        catalysts for visible-light-assisted reactions and electrochemical 
+                                        hydrogen production, with an emphasis on synthesis–processing–performance 
+                                        relationships. Designed and optimized Ru-modified tungsten diphosphide 
+                                        on carbon fiber, metal-oxide/phosphide systems, and rutile TiO<sub>2</sub>@carbon 
+                                        core–shell nanowires using Chemical Vapor Deposition (CVD). Applied XRD, FE-SEM, AFM, Raman, UV–Vis, XPS, and 
+                                        electrochemical techniques to evaluate phase formation, morphology, surface 
+                                        chemistry, stability, and catalytic performance. Used iterative composition 
+                                        and surface-modification strategies to enhance hydrogen evolution activity 
+                                        and resolve synthesis and measurement variability.
+                                    </p>
+                                </article>
+
+                                <article class="timeline-item">
+                                    <p class="timeline-date">Apr  2018-Sep 2018</p>
+                                    <h3>TEEP@Asia Plus Intern</h3>
+                                    <h4>National Dong Hwa University, Hualien, Taiwan</h4>
+                                    <p>
+                                        Conducted research on carbon-containing rutile-phase TiO<sub>2</sub> nanowires for 
+                                        visible-light-driven photocatalytic applications. Gained practical experience 
+                                        in nanomaterial synthesis, structural and surface characterization, and analysis 
+                                        of photocatalytic performance.
+                                    </p>
+                                </article>
+
+                                <article class="timeline-item">
+                                    <p class="timeline-date">2018-2024</p>
+                                    <h3>Master's Researcher</h3>
+                                    <h4>Karunya Institute of Science and Technology, Coimbatore, India</h4>
+                                    <p>
+                                        Conducted multidisciplinary master’s research in nanomaterials, thin-film electronics, 
+                                        spintronics, and energy-harvesting materials. Fabricated ZnO-based thin-film transistors 
+                                        with ZnO and Al<sub>2</sub>O<sub>3</sub> gate dielectrics and room-temperature 
+                                        Co/Al<sub>2</sub>O<sub>3</sub>/Fe magnetic tunnel-junction 
+                                        structures using pulsed laser deposition (PLD). Applied XRD, SEM/FE-SEM, AFM, EDX, UV–Vis, FTIR, electrical I–V, 
+                                        and VSM/PPMS measurements to correlate phase formation, morphology, optical band gap, conductivity, 
+                                        and magnetic behavior with fabrication conditions and device performance.
                                     </p>
                                 </article>
                             </div>
                         </section>
 
                         <section class="timeline-section">
+                            <h3>Teaching Experience</h3>
+
+                            <div class="timeline">
+                                <article class="timeline-item">
+                                    <p class="timeline-date">2023</p>
+                                    <h3>Graduate Teaching Assistant</h3>
+                                    <h4>Solid State Physics | Department of Physics, National Dong Hwa University</h4>
+                                    <p>
+                                        Coordinated with the instructor to support course delivery and student learning. Held office hours and provided 
+                                        individualized academic support, graded assignments and examinations.
+                                    </p>
+                                </article>
+                            </div>
+                        </section>
+
+
+                        <section class="timeline-section">
                             <h3>Education</h3>
 
                             <div class="timeline">
                                 <article class="timeline-item">
-                                    <p class="timeline-date">Add year</p>
-                                    <h3>Ph.D. in Your Field</h3>
-                                    <p>University name and location</p>
+                                    <p class="timeline-date">2018-2024</p>
+                                    <h3>Ph.D. in Physics</h3>
+                                    <h4>National Dong Hwa University, Hualien, Taiwan</h4>
                                     <p>
-                                        Dissertation: Add the title of your doctoral
-                                        dissertation.
+                                        Dissertation: Transition metal oxide and diphosphide nanostructures for environmental preservation
                                     </p>
                                 </article>
 
                                 <article class="timeline-item">
-                                    <p class="timeline-date">Add year</p>
-                                    <h3>Previous degree</h3>
-                                    <p>University name and location</p>
+                                    <p class="timeline-date">2012-2017</p>
+                                    <h3>M.Sc in Nanoscience and Technology (Int)</h3>
+                                    <h4>Karunya Institute of Science and Technology, Coimbatore, India</h4>
+                                    <p>
+                                        Dissertation: Magnetoresistance at Room Temperature in Ferromagnetic Thin Film Tunnel Junctions
+                                    </p>
                                 </article>
                             </div>
                         </section>
@@ -1806,14 +2031,26 @@
                         <section class="timeline-section">
                             <h3>Professional service</h3>
 
+                            
+
                             <div class="timeline">
                                 <article class="timeline-item">
-                                    <p class="timeline-date">Present</p>
+                                    
+                                    <p class="timeline-date">2025-Present</p>
                                     <h3>Postdoctoral community engagement</h3>
+                                    <a
+                                    class="publication-title-link"
+                                    href="https://postdocs.utah.edu/upda/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <h4>Utah Postdoctoral Association (UPDA)</h4>
+                                </a>
                                     <p>
-                                        Supporting professional development,
-                                        networking, outreach, and community-building
-                                        activities for postdoctoral researchers.
+                                        Previously served as Junior Chair and currently serve as Communications Chair of the University of 
+                                        Utah Postdoctoral Association (UPDA). Coordinate organizational communications, newsletters, event 
+                                        promotion, and outreach while collaborating with board members to support professional development, 
+                                        networking, and community-building initiatives for postdoctoral researchers.
                                     </p>
                                 </article>
                             </div>
@@ -1920,10 +2157,6 @@
                         </div>
                     </div>
 
-                    <!--
-                        Replace YOUR_FORM_ID below with the form ID from your
-                        Formspree dashboard, for example: https://formspree.io/f/abcxyzde
-                    -->
                     <form
                         class="contact-form"
                         id="contactForm"
@@ -2047,7 +2280,10 @@
             });
 
             navLinks.forEach((link) => {
-                const isActive = link.getAttribute("href") === `#${pageName}`;
+                const navigationPage =
+                    pageName === "outside-lab" ? "interests" : pageName;
+                const isActive =
+                    link.getAttribute("href") === `#${navigationPage}`;
                 link.classList.toggle("active", isActive);
 
                 if (isActive) {
