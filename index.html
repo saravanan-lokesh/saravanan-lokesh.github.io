@@ -289,9 +289,25 @@
         .hero {
             min-height: 620px;
             display: grid;
-            grid-template-columns: 1.25fr 0.75fr;
+            grid-template-columns: 0.75fr 1.25fr;
             align-items: center;
             gap: clamp(40px, 8vw, 100px);
+        }
+
+        .profile-panel {
+            order: 1;
+        }
+
+        .hero-copy {
+            order: 2;
+        }
+
+        .hero-copy h1 {
+            max-width: 680px;
+            margin-bottom: 18px;
+            font-size: clamp(1.6rem, 2.7vw, 2.35rem);
+            line-height: 1.2;
+            letter-spacing: -0.025em;
         }
 
         .hero-description {
@@ -304,11 +320,81 @@
             margin-top: 15px;
         }
 
+        .profile-panel {
+            width: min(100%, 430px);
+            justify-self: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
         .headshot-wrapper {
             position: relative;
             width: min(100%, 390px);
             aspect-ratio: 4 / 5;
-            justify-self: center;
+        }
+
+        .profile-name {
+            margin: 28px 0 16px;
+            color: var(--text);
+            font-size: clamp(1.7rem, 3vw, 2.15rem);
+            font-weight: 800;
+            letter-spacing: -0.035em;
+        }
+
+        .profile-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .profile-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            min-height: 38px;
+            padding: 7px 11px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--surface);
+            color: var(--muted);
+            font-size: 0.86rem;
+            font-weight: 650;
+            line-height: 1;
+            transition: 0.2s ease;
+        }
+
+        .profile-link:hover,
+        .profile-link:focus-visible {
+            border-color: var(--accent);
+            color: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 18px rgba(23, 59, 87, 0.1);
+        }
+
+        .profile-link-icon {
+            width: 19px;
+            height: 19px;
+            flex: 0 0 19px;
+            display: inline-grid;
+            place-items: center;
+            color: var(--primary);
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .profile-link-icon svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            fill: currentColor;
+        }
+
+        .profile-link:hover .profile-link-icon,
+        .profile-link:focus-visible .profile-link-icon {
+            color: var(--accent-dark);
+            transform: scale(1.06);
         }
 
         .headshot-decoration {
@@ -956,8 +1042,11 @@
                 order: 2;
             }
 
-            .headshot-wrapper {
+            .profile-panel {
                 order: 1;
+            }
+
+            .headshot-wrapper {
                 width: min(76vw, 330px);
             }
 
@@ -1116,28 +1205,29 @@
             <div class="container">
                 <div class="hero">
                     <div class="hero-copy">
-                        <p class="eyebrow">
-                            Surface Science · Electrocatalysis · Sub-nano cluster
-                        </p>
 
-                        <h1>
-                            Hello, I’m<br>
-                            Lokesh Saravanan.
-                        </h1>
+                        <h4>
+                            Thanks for stopping by my little corner of the internet!
+                        </h4>
 
                         <p class="hero-description">
-                            I am a postdoctoral researcher specializing in surface
-                            science and electrocatalysis. My research focuses on
-                            controlling the anchoring, electronic structure, and
-                            reactivity of sub-nanometer platinum clusters on modified
-                            graphitic supports.
+                            I am a postdoctoral researcher at the University of Utah specializing in surface science, 
+                            electrocatalysis, and nanoscale materials. My current research focuses on understanding how the atomic 
+                            structure and surface interactions of size-selected platinum clusters influence catalytic 
+                            performance. 
                         </p>
 
                         <p class="hero-description">
-                            I combine ion implantation, physical vapor deposition,
-                            scanning tunneling microscopy, X-ray photoelectron
-                            spectroscopy, and electrochemical measurements to connect
-                            atomic-scale structure with catalytic performance.
+                            I combine advanced surface characterization, controlled cluster deposition, and 
+                            electrochemical measurements to connect atomic-scale structure with reactivity. My broader 
+                            interests include clean-energy materials, catalyst design, and translating fundamental materials 
+                            science into practical technologies.
+                        </p>
+
+                        <p class="hero-description">
+                            Beyond the lab, I enjoy spending time and playing with my dog, Coco, who keeps life outside research fun and energetic.
+                            I am also involved in postdoctoral community activities and enjoy contributing to events, communication and initiatices 
+                            that make science more engaging and accessible.
                         </p>
 
                         <div class="button-group">
@@ -1155,21 +1245,80 @@
                         </div>
                     </div>
 
-                    <div class="headshot-wrapper">
-                        <div class="headshot-decoration"></div>
-                        <div class="headshot-fallback" aria-hidden="true">LS</div>
-                        
-                        <img
-                            class="headshot"
-                            src="images/headshot.jpg"
-                            alt="Headshot of Lokesh Saravanan"
-                            onerror="this.style.display='none'"
-                        >
+                    <div class="profile-panel">
+                        <div class="headshot-wrapper">
+                            <div class="headshot-decoration"></div>
+                            <div class="headshot-fallback" aria-hidden="true">LS</div>
 
-                       <!-- <p> <div class="availability"> 
-                            <span class="status-dot"></span>
-                            Interested in industrial R&amp;D and research collaborations
-                        </div></p> -->
+                            <img
+                                class="headshot"
+                                src="images/headshot.jpg"
+                                alt="Headshot of Lokesh Saravanan"
+                                onerror="this.style.display='none'"
+                            >
+                        </div>
+
+                        <h2 class="profile-name">Lokesh Saravanan, Ph.D.</h2>
+
+                        <div class="profile-links" aria-label="Professional profile links">
+                            <a
+                                class="profile-link"
+                                href="https://www.linkedin.com/in/lokeshzot/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="LinkedIn profile"
+                            >
+                                <span class="profile-link-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                    </svg>
+                                </span>
+                                <span>LinkedIn</span>
+                            </a>
+
+                            <a
+                                class="profile-link"
+                                href="https://orcid.org/0000-0003-4821-3059"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="ORCID profile"
+                            >
+                                <span class="profile-link-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                        <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/>
+                                    </svg>
+                                </span>
+                                <span>ORCID</span>
+                            </a>
+
+                            <a
+                                class="profile-link"
+                                href="mailto:lokesh.saravanan@utah.edu"
+                                aria-label="Email Lokesh Saravanan"
+                            >
+                                <span class="profile-link-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" role="img" focusable="false" fill="none">
+                                        <path d="M3 5h18v14H3V5zm1.8 1.8L12 12.2l7.2-5.4M4.8 17.2l5.1-4.2m9.3 4.2-5.1-4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                    </svg>
+                                </span>
+                                <span>Email</span>
+                            </a>
+
+                            <a
+                                class="profile-link"
+                                href="https://scholar.google.com/citations?user=rqUGk7sAAAAJ&amp;hl=en"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Google Scholar profile"
+                            >
+                                <span class="profile-link-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                        <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+                                    </svg>
+                                </span>
+                                <span>Google Scholar</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -1178,7 +1327,9 @@
                         <p class="eyebrow">Current Research overview</p>
                         <h2>Connecting sub-nano Pt cluster with electrochemical activity</h2>
                     </div>
-
+<p class="eyebrow">
+                            Surface Science · Electrocatalysis · Sub-nano cluster
+                        </p>
                     <div class="card-grid">
                         <article class="card">
                             <div class="card-icon">01</div>
@@ -2123,7 +2274,11 @@
                             </div>
 
                             <div class="contact-item">
-                                <span class="contact-symbol">in</span>
+                                <span class="contact-symbol" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" focusable="false" style="width:20px;height:20px;fill:currentColor;display:block;">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                    </svg>
+                                </span>
                                 <div>
                                     <strong>LinkedIn</strong>
                                     <small>
@@ -2139,7 +2294,11 @@
                             </div>
 
                             <div class="contact-item">
-                                <span class="contact-symbol">GS</span>
+                                <span class="contact-symbol" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" focusable="false" style="width:20px;height:20px;fill:currentColor;display:block;">
+                                        <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+                                    </svg>
+                                </span>
                                 <div>
                                     <strong>Google Scholar</strong>
                                     <small>
